@@ -18,10 +18,18 @@ public class MyController {
   @ResponseBody
   @GetMapping("/insert")
   public int insert() {
-    int    id = myService.insert("Jill", 40);
-    return id;
+    int    success = myService.insert("Jill", 40);
+    return success;
   }
 
-
+  //=========================================================================================================
+  // INSERT AND RETURN ID
+  //=========================================================================================================
+  @ResponseBody
+  @GetMapping("/insertAndReturnId")
+  public int insertAndReturnId() {
+    int    id = myService.insertAndReturnId("Jill", 40);
+    return id;
+  }
 
 }

@@ -18,6 +18,23 @@ public class MyService {
   //=========================================================================================================
   public int insert(String name, Integer age) {
 
+    return jdbcTemplate.update(
+      connection -> {
+        String            sql               = "INSERT INTO PERSON (NAME, AGE) VALUES ( ?, ?)";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql, new String[] { "ID" });
+                          preparedStatement.setString(1, name);
+                          preparedStatement.setLong  (2, age );
+        return preparedStatement;
+      }
+    );
+
+  }
+
+  //=========================================================================================================
+  // INSERT AND RETURN ID
+  //=========================================================================================================
+  public int insertAndReturnId(String name, Integer age) {
+
     KeyHolder keyHolder = new GeneratedKeyHolder();
 
     jdbcTemplate.update(
